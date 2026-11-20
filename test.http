@@ -1,0 +1,55 @@
+### 1. تسجيل حساب صاحب مطعم (Restaurant Owner)
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ahmad Owner",
+  "email": "ahmad@restaurant.com",
+  "password": "password123",
+  "role": "restaurant_owner"
+}
+
+### 2. إنشاء مطعم جديد 
+POST http://localhost:3000/api/restaurants
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDAxMWJiN2EzNGMwMjBkOTA2YzVlNCIsImlhdCI6MTc5NTE2NjY1MSwiZXhwIjoxNzk1NzcxNDUxfQ.gZXC-QPIJjnbGhTW_OaqWBLumEl3yWmr8T_J9ePqqQA
+
+{
+  "name": "Al-Sham Grill",
+  "description": "Authentic Syrian grilled dishes and appetizers",
+  "cuisine": ["Syrian", "Middle Eastern"],
+  "address": {
+    "street": "Al-Thawra St",
+    "city": "Tartous",
+    "state": "Tartous",
+    "zipCode": "00963",
+    "country": "Syria"
+  },
+  "contact": {
+    "phone": "+963-43-123456",
+    "email": "info@alshamgrill.com"
+  },
+  "openingHours": {
+    "monday": { "open": "10:00", "close": "23:00" }
+  }
+}
+
+### 3. إضافة وجبة للمطعم 
+POST http://localhost:3000/api/meals
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDAxMWJiN2EzNGMwMjBkOTA2YzVlNCIsImlhdCI6MTc5NTE2NjY1MSwiZXhwIjoxNzk1NzcxNDUxfQ.gZXC-QPIJjnbGhTW_OaqWBLumEl3yWmr8T_J9ePqqQA
+
+{
+  "name": "Mixed Grill Platter",
+  "restaurant": "6b0013c17a34c020d906c5e5",
+  "description": "Assorted kebabs, shish tawook, and grilled vegetables",
+  "price": 15.5,
+  "category": "main course",
+  "ingredients": ["Lamb", "Chicken", "Tomatoes", "Spices"],
+  "calories": 850,
+  "preparationTime": 25,
+  "isSpicy": false
+}
+
+### 4. عرض جميع المطاعم (رابط عام)
+GET http://localhost:3000/api/restaurants
